@@ -1,0 +1,90 @@
+
+import webbrowser
+
+# Dictionary-based dataset for fast lookup
+dog_breeds = {
+    "labrador retriever": {
+        "temperament": "Friendly, Outgoing, Gentle",
+        "bred_for": "Companion",
+        "image": "https://cdn2.thedogapi.com/images/0LJiOVlxp.jpg"
+    },
+    "german shepherd": {
+        "temperament": "Confident, Courageous, Smart",
+        "bred_for": "Guarding",
+        "image": "https://cdn2.thedogapi.com/images/tChrH8dDJ.jpg"
+    },
+    "siberian husky": {
+        "temperament": "Outgoing, Friendly, Intelligent",
+        "bred_for": "Sled pulling",
+        "image": "https://cdn2.thedogapi.com/images/PG8UPLSVU.jpg"
+    },
+    "border collie": {
+        "temperament": "Intelligent, Energetic, Tenacious",
+        "bred_for": "Herding",
+        "image": "https://cdn2.thedogapi.com/images/SyfsC19NQ_1280.jpg"
+    }
+}
+
+def lookup_breed():
+    """Search for a breed and display its details."""
+    breed_name = input("\nEnter the breed name: ").strip().lower()
+    
+    if breed_name in dog_breeds:
+        breed = dog_breeds[breed_name]
+        print(f"\nBreed: {breed_name.title()}")
+        print(f"Temperament: {breed['temperament']}")
+        print(f"Bred For: {breed['bred_for']}")
+        print("Opening image in browser...")
+        
+        try:
+            webbrowser.open(breed["image"])  # Open breed image in browser
+        except Exception as e:
+            print(f"Could not open image: {e}")
+    else:
+        print("Breed not found. Please try again.")
+
+def filter_by_purpose():
+    """Filter breeds based on their primary purpose."""
+    purpose = input("\nEnter the purpose (e.g., guard, sled, companion, herding): ").strip().lower()
+    
+    matching_breeds = [name.title() for name, details in dog_breeds.items() if purpose in details["bred_for"].lower()]
+
+    if matching_breeds:
+        print("\nBreeds bred for this purpose:")
+        for breed in matching_breeds:
+            print(f"- {breed}")
+    else:
+        print("No breeds found for this purpose.")
+
+def display_all_breeds():
+    """Display all available breeds."""
+    print("\nAvailable Dog Breeds:")
+    for breed in sorted(dog_breeds.keys()):
+        print(f"- {breed.title()}")
+
+def menu():
+    """Main menu for user interaction."""
+    while True:
+        print("\nDog Breed Information System")
+        print("1. Look up a dog breed")
+        print("2. Find breeds by purpose")
+        print("3. Show all dog breeds")
+        print("4. Exit")
+
+        choice = input("Enter your choice (1-4): ").strip()
+
+        if choice == "1":
+            lookup_breed()
+        elif choice == "2":
+            filter_by_purpose()
+        elif choice == "3":
+            display_all_breeds()
+        elif choice == "4":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 4.")
+
+# Run the menu
+if __name__ == "__main__":
+    menu()
