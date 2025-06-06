@@ -1,0 +1,42 @@
+import turtle
+
+# Set up the turtle
+t = turtle.Turtle()
+t.speed(5)
+
+# Function to draw a circle with a given radius
+def draw_circle(color, radius, x, y):
+    t.penup()
+    t.goto(x, y)  
+    t.pendown()
+    t.fillcolor(color)
+    t.begin_fill()
+    t.circle(radius)
+    t.end_fill()
+
+# Draw the bear
+# Head
+draw_circle("brown", 50, 0, 0)  
+
+# Ears
+draw_circle("brown", 20, -50, 70)  
+draw_circle("brown", 20, 50, 70)
+
+# Body
+draw_circle("brown", 70, 0, -130)  
+
+# Arms
+draw_circle("brown", 30, -80, -90)  
+draw_circle("brown", 30, 90, -90)   
+
+# Legs
+draw_circle("brown", 30, -40, -150) 
+draw_circle("brown", 30, 40, -150)   
+
+# Eyes
+draw_circle("black", 10, -20, 40) 
+draw_circle("black", 10, 20, 40)   
+
+# Nose
+draw_circle("black", 15, 0, 30)   
+
