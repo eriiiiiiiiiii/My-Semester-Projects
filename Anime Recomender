@@ -1,0 +1,44 @@
+import time
+import random
+import webbrowser
+
+# Introduction message
+def introduction():
+    print("Welcome to the Anime Recommendation Program!")
+    print("Each time you request a recommendation, a random anime image will be shown with a brief description.")
+    time.sleep(2)
+
+# Image URLs and their descriptions
+anime_images = [
+    {"url": "https://tinyurl.com/2p9euybs", "title": "Attack on Titan", "description": "A dark fantasy anime where humanity fights for survival against man-eating giants.", "source": "Pixabay, Author: xyz, CC License"},
+    {"url": "https://tinyurl.com/mr2m49kf", "title": "Naruto", "description": "Follow Naruto Uzumaki's journey to become the strongest ninja and gain recognition from his peers.", "source": "Unsplash, Author: abc, CC License"},
+    {"url": "https://tinyurl.com/2p8dybs9", "title": "One Piece", "description": "Monkey D. Luffy and his crew explore the Grand Line in search of the ultimate treasure, the One Piece.", "source": "Pexels, Author: def, CC License"},
+    {"url": "https://tinyurl.com/yc2ebvf9", "title": "Demon Slayer", "description": "Tanjiro Kamado battles demons while searching for a cure for his sister's curse.", "source": "Pixabay, Author: ghi, CC License"},
+    {"url": "https://tinyurl.com/4t3sy4mw", "title": "My Hero Academia", "description": "In a world where superpowers are the norm, Izuku Midoriya dreams of becoming a hero.", "source": "Unsplash, Author: jkl, CC License"}
+]
+
+# Function to display a random anime recommendation
+def recommend_anime():
+    anime = random.choice(anime_images)
+    print(f"\nRecommended Anime: {anime['title']}")
+    print(f"Description: {anime['description']}")
+    print(f"Source: {anime['source']}")
+    webbrowser.open(anime['url'])
+    time.sleep(2)
+
+# Main loop
+def main():
+    introduction()
+    while True:
+        user_input = input("Would you like an anime recommendation? (yes/no): ").strip().lower()
+        if user_input == 'yes':
+            recommend_anime()
+        elif user_input == 'no':
+            print("Thanks for using the Anime Recommendation Program! Goodbye!")
+            break
+        else:
+            print("Please enter 'yes' or 'no'.")
+
+# Run the program
+if __name__ == "__main__":
+    main()
